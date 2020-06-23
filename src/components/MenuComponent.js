@@ -1,20 +1,28 @@
 import React , {Component} from 'react';
 import {Card,CardImg,CardImgOverlay,CardBody,CardText,CardTitle} from 'reactstrap';
+import DishDetail from  './DishdetailComponent';
 class Menu extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
+            //This is implemented to click event to take the dish page
             selectedDish: null
         }
     }
 
     onDishSelect(dish) {
+        //when user chooses a dish update state to "selectedDish to currebt dish"
         this.setState({ selectedDish: dish});
     }
 
-    renderDish(dish) {
+    // This function renders the selectedDish and displays below
+    //<div className="row">  
+    //  {this.renderDish(this.state.selectedDish)}
+    //</div>
+
+    /*renderDish(dish) {
         if (dish != null)
             return(
                 <Card>
@@ -29,9 +37,10 @@ class Menu extends Component {
             return(
                 <div></div>
             );
-    }
+    }*/
 
     render() {
+        // using props keyword we can use to map the array
         const menu = this.props.dishes.map((dish) => {
             return (
               <div  className="col-12 col-md-5 m-1">
@@ -52,9 +61,7 @@ class Menu extends Component {
                     {menu}
                 </div>
                 <div className="row">
-                  <div  className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.state.selectedDish)}
-                  </div>
+                    <DishDetail selectedDish={this.state.selectedDish}/>
                 </div>
             </div>
         );
